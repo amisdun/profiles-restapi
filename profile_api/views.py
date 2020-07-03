@@ -1,7 +1,7 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status, viewsets
-from profile_api import serializers
+from profile_api import serializers, models
 
 class HelloApiView(APIView):
     """Test API view"""
@@ -54,3 +54,9 @@ class HelloViewSets(viewsets.ViewSet):
         ]
 
         return Response({'message': "Hello", 's_viewset': s_viewset})
+
+
+class UserProfileViewSet(viewsets.ModelViewSet):
+    """handle craeting and updating profiles"""
+    serializer_class = serializers.UserProfileSerializer
+    queryset = models.UserProfile.objects.all()
